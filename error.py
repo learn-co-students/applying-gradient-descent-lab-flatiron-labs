@@ -26,7 +26,8 @@ def squared_errors(x_values, y_values, m, b):
     return list(map(lambda x: squared_error(x_values, y_values, m, b, x), x_values))
 
 def residual_sum_squares(x_values, y_values, m, b):
-    return sum(squared_errors(x_values, y_values, m, b))
+    return round(sum(squared_errors(x_values, y_values, m, b)), 2)
+
 
 def trace_rss(x_values, y_values, m, b):
     rss_calc = residual_sum_squares(x_values, y_values, m, b)
