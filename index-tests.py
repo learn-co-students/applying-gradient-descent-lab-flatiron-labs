@@ -1,12 +1,11 @@
 import unittest
 from ipynb.fs.full.index import (movies, remove_movies_missing_data, scale_down_movie,
     scale_down_movies, revenues_per_budgets_trace, highest_domestic_gross, outside_consultant_predicted_revenue,
-    consultant_estimated_revenues_trace, error_for_consultant_model, scaled_movies, rss_consultant,
-    consultant_spend_a_little_more, revenue_with_year, internal_consultant_estimated_trace,
-    years_and_revenue_increase_year, years_and_revenue_increase_budget,
+    consultant_estimated_revenues_trace, error_for_consultant_model, scaled_movies, rss_consultant, revenue_with_year, internal_consultant_estimated_trace,
     squared_error_revenue_with_year, expected_revenue_per_budget, rss_revenue_with_year, initial_regression_trace,
     regression_revenue_error, rss_trace, m_gradient, b_gradient, step_gradient)
 import math
+
 class TestApplyGradientDescentLab(unittest.TestCase):
     parsed_movies = remove_movies_missing_data(movies)
 
@@ -81,14 +80,10 @@ class TestApplyGradientDescentLab(unittest.TestCase):
          'domgross': 148.43, 'domgross_2013$': 148.43, 'imdb': 'tt1800241', 'intgross': 249.48,
          'intgross_2013$': 249.48, 'period code': 1.0,
          'test': 'ok-disagree', 'title': 'American Hustle', 'year': 2013}
-        self.assertEqual(error_for_consultant_model(american_hustle), -30)
+        self.assertEqual(error_for_consultant_model(american_hustle), 78.43)
 
     def test_rss_consultant(self):
-        self.assertEqual(rss_consultant(scaled_movies), 3900419.65)
-
-    def test_consultant_spend_a_little_more(self):
-        budget = 100000000
-        self.assertEqual(consultant_spend_a_little_more(budget), 3)
+        self.assertEqual(rss_consultant(scaled_movies), 23234357.68)
 
     def test_revenue_with_budget(self):
         self.assertEqual(revenue_with_year(25, 1997), 59.5)
@@ -101,13 +96,7 @@ class TestApplyGradientDescentLab(unittest.TestCase):
         self.assertEqual(internal_consultant_estimated_trace['name'], 'consultant estimate')
 
     def test_rss_revenue_with_year(self):
-        self.assertEqual(rss_revenue_with_year(scaled_movies), 4241833.98)
-
-    def test_years_and_revenue_increase_year(self):
-        self.assertEqual(years_and_revenue_increase_year(), 1)
-
-    def test_years_and_revenue_increase_budget(self):
-        self.assertEqual(years_and_revenue_increase_budget(), 1.1)
+        self.assertEqual(rss_revenue_with_year(scaled_movies), 23653372.74)
 
     def test_expected_revenue_per_budget(self):
         american_hustle = {'binary': 'PASS', 'budget': 40.0, 'budget_2013$': 40.0, 'clean_test': 'ok',
