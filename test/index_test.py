@@ -1,4 +1,6 @@
 import unittest
+import sys
+sys.path.insert(0, '..')
 from ipynb.fs.full.index import (movies, remove_movies_missing_data, scale_down_movie,
     scale_down_movies, revenues_per_budgets_trace, highest_domestic_gross, outside_consultant_predicted_revenue,
     consultant_estimated_revenues_trace, error_for_consultant_model, scaled_movies, rss_consultant, revenue_with_year, internal_consultant_estimated_trace,
@@ -72,7 +74,7 @@ class TestApplyGradientDescentLab(unittest.TestCase):
         self.assertEqual(consultant_estimated_revenues_trace['x'][0:10],[13.0, 45.66, 20.0, 61.0, 40.0, 225.0, 92.0, 12.0, 13.0, 130.0])
         self.assertEqual(consultant_estimated_revenues_trace['y'][0:10], [29.5, 78.49, 40.0, 101.5, 70.0, 347.5, 148.0, 28.0, 29.5, 205.0])
         self.assertEqual(consultant_estimated_revenues_trace['mode'], 'line')
-        self.assertEqual(consultant_estimated_revenues_trace['name'], 'consultant estimate')
+        self.assertEqual(consultant_estimated_revenues_trace['name'], 'external consultant estimate')
 
     def test_error_for_consultant_model(self):
         american_hustle = {'binary': 'PASS', 'budget': 40.0, 'budget_2013$': 40.0, 'clean_test': 'ok',
@@ -86,17 +88,17 @@ class TestApplyGradientDescentLab(unittest.TestCase):
         self.assertEqual(rss_consultant(scaled_movies), 23234357.68)
 
     def test_revenue_with_budget(self):
-        self.assertEqual(revenue_with_year(25, 1997), 59.5)
-        self.assertEqual(revenue_with_year(40, 1983), 62.0)
+        self.assertEqual(revenue_with_year(25, 1997), 75.5)
+        self.assertEqual(revenue_with_year(40, 1983), 71.0)
 
     def test_internal_consultant_estimated_revenue(self):
         self.assertEqual(internal_consultant_estimated_trace['x'][0:10],[13.0, 45.66, 20.0, 61.0, 40.0, 225.0, 92.0, 12.0, 13.0, 130.0])
-        self.assertEqual(internal_consultant_estimated_trace['y'][0:10], [29.5, 78.49, 40.0, 101.5, 70.0, 347.5, 148.0, 28.0, 29.5, 205.0])
-        self.assertEqual(internal_consultant_estimated_trace['mode'], 'line')
-        self.assertEqual(internal_consultant_estimated_trace['name'], 'consultant estimate')
+        self.assertEqual(internal_consultant_estimated_trace['y'][0:10], [86.3, 120.726, 94.0, 139.10000000000002, 116.0, 319.5, 173.2, 85.2, 86.3, 215.0])
+        self.assertEqual(internal_consultant_estimated_trace['mode'], 'markers')
+        self.assertEqual(internal_consultant_estimated_trace['name'], 'internal consultant estimate')
 
     def test_rss_revenue_with_year(self):
-        self.assertEqual(rss_revenue_with_year(scaled_movies), 23653372.74)
+        self.assertEqual(rss_revenue_with_year(scaled_movies), 25364329.23)
 
     def test_expected_revenue_per_budget(self):
         american_hustle = {'binary': 'PASS', 'budget': 40.0, 'budget_2013$': 40.0, 'clean_test': 'ok',
