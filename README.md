@@ -133,7 +133,7 @@ movies[0]
 scale_down_movie(movies[0])
 ```
 
-Ok, now that we have a function to scale down our movies, lets `map` through all of our `parsed_movies` to return a list of `scaled_movies`. 
+Ok, now that we have a function to scale down our movies, lets `map` through all of our `parsed_movies` to return a list of `scaled_movies`.
 
 
 ```python
@@ -209,7 +209,7 @@ domestic_revenues[0:10] # [25.68, 13.61, 53.11, 75.61, 95.02, 38.36, 67.35, 15.3
 
 
 ```python
-titles[0:10] 
+titles[0:10]
 # ['21 &amp; Over',  'Dredd 3D', '12 Years a Slave', '2 Guns', '42', '47 Ronin',  'A Good Day to Die Hard',
 # 'About Time',  'Admission',  'After Earth']
 ```
@@ -301,7 +301,7 @@ plot([revenues_per_budgets_trace, consultant_estimated_revenues_trace], revenues
 
 Overall, the model doesn't look too bad.  However, we can calculate the RSS to quantify how accurate his model really is.
 
-Let's write a method called `error_for_consultant_model` which takes in a bugdet of a movie in our dataset, and returns the difference between the movie's gross domestic revenue in 2013 dollars, and the prediction from the consultant's model.
+Let's write a method called `error_for_consultant_model` which takes in a budget of a movie in our dataset, and returns the difference between the movie's gross domestic revenue in 2013 dollars, and the prediction from the consultant's model.
 
 
 ```python
@@ -318,7 +318,7 @@ american_hustle = {'binary': 'PASS', 'budget': 40.0, 'budget_2013$': 40.0, 'clea
 error_for_consultant_model(american_hustle) # 78.43
 ```
 
-Once haven written a formula that calculates the error for the consultant's model provided a budget, we can write a method that calculates the RSS for the consulant's model.  When we move onto compare our consultant's model with others, we'll then have a metric for comparison.
+Once haven written a formula that calculates the error for the consultant's model provided a budget, we can write a method that calculates the RSS for the consultant's model.  When we move onto compare our consultant's model with others, we'll then have a metric for comparison.
 
 
 ```python
