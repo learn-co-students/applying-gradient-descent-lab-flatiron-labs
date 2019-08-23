@@ -133,7 +133,7 @@ movies[0]
 scale_down_movie(movies[0])
 ```
 
-Ok, now that we have a function to scale down our movies, lets `map` through all of our `parsed_movies` to return a list of `scaled_movies`.
+Ok, now that we have a function to scale down our movies, lets `map` through all of our `parsed_movies` to return a list of `scaled_movies`. 
 
 
 ```python
@@ -209,7 +209,7 @@ domestic_revenues[0:10] # [25.68, 13.61, 53.11, 75.61, 95.02, 38.36, 67.35, 15.3
 
 
 ```python
-titles[0:10]
+titles[0:10] 
 # ['21 &amp; Over',  'Dredd 3D', '12 Years a Slave', '2 Guns', '42', '47 Ronin',  'A Good Day to Die Hard',
 # 'About Time',  'Admission',  'After Earth']
 ```
