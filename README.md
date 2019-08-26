@@ -133,7 +133,7 @@ movies[0]
 scale_down_movie(movies[0])
 ```
 
-Ok, now that we have a function to scale down our movies, lets `map` through all of our `parsed_movies` to return a list of `scaled_movies`.
+Ok, now that we have a function to scale down our movies, lets `map` through all of our `parsed_movies` to return a list of `scaled_movies`. 
 
 
 ```python
@@ -146,35 +146,36 @@ def scale_down_movies(movies):
 first_ten_movies = parsed_movies[0:10]
 first_ten_scaled = scale_down_movies(first_ten_movies) or []
 first_ten_scaled[-2:]
-# [{'binary': 'PASS', 'budget': 13.0,
-#   'budget_2013$': 13.0,
-#   'clean_test': 'ok',
-#   'code': '2013PASS',
-#   'decade code': 1.0,
-#   'domgross': 18.01,
-#   'domgross_2013$': 18.01,
-#   'imdb': 'tt1814621',
-#   'intgross': 18.01,
-#   'intgross_2013$': 18.01,
-#   'period code': 1.0,
-#   'test': 'ok',
-#   'title': 'Admission',
-#   'year': 2013},
-#  {'binary': 'FAIL',
-#   'budget': 130.0,
-#   'budget_2013$': 130.0,
-#   'clean_test': 'notalk',
-#   'code': '2013FAIL',
-#   'decade code': 1.0,
-#   'domgross': 60.52,
-#   'domgross_2013$': 60.52,
-#   'imdb': 'tt1815862',
-#   'intgross': 244.37,
-#   'intgross_2013$': 244.37,
-#   'period code': 1.0,
-#   'test': 'notalk',
-#   'title': 'After Earth',
-#   'year': 2013}]
+#[{'year': 2013,
+#  'imdb': 'tt1814621',
+#  'title': 'Admission',
+#  'test': 'ok',
+#  'clean_test': 'ok',
+#  'binary': 'PASS',
+#  'budget': 13.0,
+#  'domgross': 18.01,
+#  'intgross': 18.01,
+#  'code': '2013PASS',
+#  'budget_2013$': 13.0,
+#  'domgross_2013$': 18.01,
+#  'intgross_2013$': 18.01,
+#  'period code': 1.0,
+#  'decade code': 1.0},
+# {'year': 2013,
+#  'imdb': 'tt1815862',
+#  'title': 'After Earth',
+#  'test': 'notalk',
+#  'clean_test': 'notalk',
+#  'binary': 'FAIL',
+#  'budget': 130.0,
+#  'domgross': 60.52,
+#  'intgross': 244.37,
+#  'code': '2013FAIL',
+#  'budget_2013$': 130.0,
+#  'domgross_2013$': 60.52,
+#  'intgross_2013$': 244.37,
+#  'period code': 1.0,
+#  'decade code': 1.0}]
 ```
 
 
@@ -209,7 +210,7 @@ domestic_revenues[0:10] # [25.68, 13.61, 53.11, 75.61, 95.02, 38.36, 67.35, 15.3
 
 
 ```python
-titles[0:10]
+titles[0:10] 
 # ['21 &amp; Over',  'Dredd 3D', '12 Years a Slave', '2 Guns', '42', '47 Ronin',  'A Good Day to Die Hard',
 # 'About Time',  'Admission',  'After Earth']
 ```
@@ -286,7 +287,7 @@ domestic_revenues = list(map(lambda movie: movie['domgross_2013$'], scaled_movie
 titles = list(map(lambda movie: movie['title'], scaled_movies))
 
 consultant_estimated_revenues = list(map(lambda budget: outside_consultant_predicted_revenue(budget),budgets))
-consultant_estimated_revenues_trace = trace_values(budgets, consultant_estimated_revenues, mode='line', name = 'external consultant estimate')
+consultant_estimated_revenues_trace = trace_values(budgets, consultant_estimated_revenues, mode='lines', name = 'external consultant estimate')
 ```
 
 
@@ -447,7 +448,7 @@ Let's plot our initial regression line along our dataset to get a sense of the a
 budgets = list(map(lambda movie: movie['budget_2013$'], scaled_movies))
 estimated_revenues = list(map(lambda budget: expected_revenue_per_budget(budget), budgets))
 len(estimated_revenues)
-initial_regression_trace = trace_values(budgets, estimated_revenues, mode = 'line', name = 'initial regression trace')
+initial_regression_trace = trace_values(budgets, estimated_revenues, mode = 'lines', name = 'initial regression trace')
 ```
 
 
@@ -507,7 +508,7 @@ cost_values = list(map(lambda m_value: round(residual_sum_squares(budgets, domes
 
 ```python
 from graph import trace_values
-rss_trace = trace_values(x_values=m_range, y_values=cost_values, mode = 'line')
+rss_trace = trace_values(x_values=m_range, y_values=cost_values, mode = 'lines')
 ```
 
 
