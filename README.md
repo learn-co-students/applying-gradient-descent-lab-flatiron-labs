@@ -3,15 +3,15 @@
 
 ### Introduction
 
-In this lesson, let's put our knowledge about data science to the test. We will have access to functions in the [error](https://github.com/learn-co-curriculum/applying-gradient-descent-lab/blob/master/error.py), [graph](https://github.com/learn-co-curriculum/applying-gradient-descent-lab/blob/master/graph.py) and [linear equations](https://github.com/learn-co-curriculum/applying-gradient-descent-lab/blob/master/linear_equations.py) libraries that we previously wrote.
+In this lab, let's put our knowledge about data science to the test. We will have access to functions in the [error](https://github.com/learn-co-curriculum/applying-gradient-descent-lab/blob/master/error.py), [graph](https://github.com/learn-co-curriculum/applying-gradient-descent-lab/blob/master/graph.py) and [linear equations](https://github.com/learn-co-curriculum/applying-gradient-descent-lab/blob/master/linear_equations.py) libraries that we previously wrote.
 
-This is our task. We are an employee for *Good Lion Studios*. For *Good Lion*, our job is first to gather, explore, and format our data so that we can build a regression line of this data. Then we will work through various attempts of building out these regression lines. By the end of this lab, we should have a working version that we can proudly show to our manager.
+This is our task: We are an employee for *Good Lion Studios*. For *Good Lion*, our job is first to gather, explore, and format our data so that we can build a regression line of this data. Then we will work through various attempts of building out these regression lines. By the end of this lab, we should have a working version that we can proudly show to our manager.
 
 ### Learning Objectives
 
 * Review how to use built-in functions, like filter and map, to clean data
 * Evaluate the quality of regression lines using Residual Sum of Squares (RSS)
-* Review how RSS changes with varying values of slope and y-intercept of a regression line
+* Review how RSS changes with varying values of the slope and y-intercept of a regression line
 * Implement gradient descent to find a "best fit" regression line
 
 This lesson is an opportunity to review the concepts explained in our introduction to machine learning section and practice what we recently learned about gradient descent to find an optimal regression line.
@@ -111,7 +111,7 @@ Currently, our data has some very large numbers:
 movies[0]['budget']
 ```
 
-It takes some time to figure out the number above is 13 million.  It would be frustrating to count all of the zeros whenever we come across another set of movie budgets and revenues.
+It takes some time to figure out if the number above is 13 million.  It would be frustrating to count all of the zeros whenever we come across another set of movie budgets and revenues.
 
 To make things simpler, let's divide both our budget and revenue numbers for each movie by 1 million. It will make some of our future calculations easier to interpret. The attributes that we can scale down are `budget`, `budget_2013$`, `domgross`, `domgross_2013$`, `intgross`, and `intgross_2013$`.
 
@@ -319,7 +319,7 @@ american_hustle = {'binary': 'PASS', 'budget': 40.0, 'budget_2013$': 40.0, 'clea
 error_for_consultant_model(american_hustle) # 78.43
 ```
 
-Once haven written a formula that calculates the error for the consultant's model provided a budget, we can write a method that calculates the RSS for the consultant's model.  When we move onto compare our consultant's model with others, we'll then have a metric for comparison.
+Once we have written a formula that calculates the error for the consultant's model provided a budget, we can write a method that calculates the RSS for the consultant's model.  When we move on to compare our consultant's model with others, we'll then have a metric for comparison.
 
 
 ```python
@@ -389,7 +389,7 @@ from graph import trace_values, m_b_trace, plot
 plot([revenues_per_budgets_trace, consultant_estimated_revenues_trace, internal_consultant_estimated_trace], revenues_layout)
 ```
 
-Although the `external consultant model` isn't a line, it still seems to match our data fairly well.  Let's find out how well.  Even though it is not a line, we can still calculate the RSS for this model.  Write a function called `rss_revenue_with_year` that returns the Residual Sum of Squares associated with the `revenue_with_year` model for the `scaled_movies` dataset.  The `squared_error_revenue_with_year` function can be used to return the squared error of the model associated with just a single movie.
+Although the `internal consultant model` isn't a line, it still seems to match our data fairly well.  Let's find out how well.  Even though it is not a line, we can still calculate the RSS for this model.  Write a function called `rss_revenue_with_year` that returns the Residual Sum of Squares associated with the `revenue_with_year` model for the `scaled_movies` dataset.  The `squared_error_revenue_with_year` function can be used to return the squared error of the model associated with just a single movie.
 
 
 ```python
@@ -411,7 +411,7 @@ The RSS here is $25,364,329.23$ as opposed to the RSS of $23,234,357.68$ from th
 
 Now that we have evaluated the models of an outside consultant and an internal consultant, it's time to see if we can do any better.  Let's go.
 
-We have our dataset. Let's begin with an initial regression line that sets $b = .5$ and $m = 1.79$.
+We have our dataset. Let's begin with an initial regression line that sets $b = 0.5$ and $m = 1.79$.
 
 
 ```python
@@ -534,18 +534,23 @@ Ok, now it's time to move beyond testing the accuracy of the line with changing 
 
 Remember that we derived our gradient formulas by starting with our cost function, and saying the RSS is a function of our $m$ and $b$ variables:
 
-$$J(m,b) = \sum_{i = 1}^n(y_i - (mx_i + b))^2 $$
+$$J(m,b) = \sum_{i = 1}^n(y_i - (mx_i + b))^2$$
 
 From the above formula for our cost curve, we found the gradient descent of the cost function, as that is used to find the incremental changes to decrease RSS. We do this mathematically, by taking the partial derivative with respect to $m$ and $b$.
 
-$$ \frac{dJ}{db}J(m,b) = -2\sum_{i = 1}^n(y_i - (mx_i + b)) = -2\sum_{i = 1}^n \epsilon_i $$
-$$ \frac{dJ}{dm}J(m,b) = -2\sum_{i = 1}^n x(y_i - (mx_i + b)) = -2\sum_{i = 1}^n x_i*\epsilon_i$$
+$$ \frac{\partial J}{\partial b}J(m,b) = -2\sum_{i = 1}^n(y_i - (mx_i + b)) = -2\sum_{i = 1}^n \epsilon_i $$
+$$ \frac{\partial J}{\partial m}J(m,b) = -2\sum_{i = 1}^n x(y_i - (mx_i + b)) = -2\sum_{i = 1}^n x_i*\epsilon_i$$
 
 
 
-Looking at our top function $\frac{dJ}{dm}$, we see that it equals negative 2, multiplied by the sum of the errors for a provided $m$ and $b$ values relative to our dataset.  And luckily for us, we already have a function called `regression_revenue_error` that returns the error at a given point when provided our $m$ and $b$ values.
+Looking at our top function $\frac{\partial J}{\partial m}$, we see that it equals negative 2, multiplied by the sum of the errors for a provided $m$ and $b$ values relative to our dataset.  And luckily for us, we already have a function called `regression_revenue_error` that returns the error at a given point when provided our $m$ and $b$ values.
 
-Our task now is two write a function called `b_gradient` that takes in values of $m$, $b$ and our (scaled) movies, and returns the `b` gradient, which is -2 times the sum of the errors for the dataset.
+Recall, that we learned that the factor of 2 can be discarded since it is present in both formulas. Additionally, recall that the error needs to be scaled by the size of the dataset to prevent larger datasets from having larger errors.
+
+$$ \frac{\partial J}{\partial b}J(m,b) = -\frac{1}{n}\sum_{i = 1}^n \epsilon_i $$
+$$ \frac{\partial J}{\partial m}J(m,b) = -\frac{1}{n}\sum_{i = 1}^n x_i*\epsilon_i$$
+
+Our task now is two write a function called `b_gradient` that takes in values of $m$, $b$ and our (scaled) movies, and returns the `b` gradient.
 
 
 ```python
@@ -577,9 +582,9 @@ Ok, now we just wrote two functions that tell us how to update the corresponding
 
 Remember that with each step we want to move our `current_b` value in the negative direction of calculated `b_gradient`, and want to move our `current_m` value in the negative direction of the calculated `m_gradient`.  
 
-`current_m` = `old_m` $ -  \eta(-2*\sum_{i=1}^n x_i*\epsilon_i )$
+`current_m` = `old_m` $ -  \eta(-\frac{1}{n}*\sum_{i=1}^n x_i*\epsilon_i )$
 
-`current_b` =  `old_b` $ - \eta( -2*\sum_{i=1}^n \epsilon_i )$
+`current_b` =  `old_b` $ - \eta(-\frac{1}{n}*\sum_{i=1}^n \epsilon_i )$
 
 The `step_gradient` function would take as arguments the `b_current`, `m_current`, the list of scaled movies, and a learning rate, and returns a newly calculated `b_current` and `m_current` with a dictionary of keys `b` and `m` that point to the current values.   
 
@@ -622,7 +627,7 @@ def generate_steps(m, b, number_of_steps, movies, learning_rate):
 
 
 ```python
-iterations = generate_steps(initial_regression_line['b'], initial_regression_line['m'], 100, scaled_movies, .0001) or [{'m': 'uncomment generate_steps method', 'b': 'uncomment generate_steps method '}]
+iterations = generate_steps(initial_regression_line['m'], initial_regression_line['b'], 100, scaled_movies, .0001) or [{'m': 'uncomment generate_steps method', 'b': 'uncomment generate_steps method '}]
 ```
 
 And we can see how this changes over time.
@@ -636,7 +641,7 @@ def to_line(m, b):
     ending_y = m*ending_x + b
     return {'data': [{'x': [initial_x, ending_x], 'y': [initial_y, ending_y]}]}
 
-frames = list(map(lambda iteration: to_line(iteration['m'], iteration['b']),iterations))
+frames = list(map(lambda iteration: to_line(iteration['m'], iteration['b']), iterations))
 ```
 
 
@@ -664,7 +669,7 @@ Finally, let's calculate the RSS associated with our formula as opposed to the o
 
 
 ```python
-iterations[-1] # {'b': 1.8, 'm': 1.37}
+iterations[-1] # {'b': 0.5, 'm': 1.38}
 ```
 
 
@@ -672,7 +677,7 @@ iterations[-1] # {'b': 1.8, 'm': 1.37}
 residual_sum_squares(budgets, domestic_revenues, iterations[-1]['m'], iterations[-1]['b'])
 ```
 
-Using this last iteration, we have an RSS $21,982,786$, better than all previous models - and we have the data, and knowledge to prove it:
+Using this last iteration, we have an RSS $22052973.85$, better than all previous models - and we have the data, and knowledge to prove it:
 
 
 ```python
@@ -685,7 +690,7 @@ our_regression_model = residual_sum_squares(budgets, domestic_revenues, iteratio
 ```python
 external_consultant_model # 23234357.68
 internal_consultant_model # 25364329.23
-our_regression_model      # 21982786.34
+our_regression_model      # 22052973.85
 ```
 
 Nice work!
