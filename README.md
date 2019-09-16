@@ -16,7 +16,7 @@ This is our task: We are an employee for *Good Lion Studios*. For *Good Lion*, o
 
 This lesson is an opportunity to review the concepts explained in our introduction to machine learning section and practice what we recently learned about gradient descent to find an optimal regression line.
 
-> ****Use the round method****: For many of the methods, we round down the return value to two decimal places. We can do so by using the **round** function, as in **round(12.1212, 2)** to round 12.1212 to 12.12. We did this to allow for slight differences between our results and expectations. So when we see our data differing from the expectation in the tests, check if using the **round** function helps.
+> ****Use the round method****: For many of the methods, we round down the return value to two decimal places. We can do so by using the **round** function, as in **round(12.1212, 2)** to round 12.1212 to 12.12. We did this to allow for slight differences between our results and expectations. So when we see our data differing from the expectation, check if using the **round** function helps.
 
 ### Determining Quality
 
