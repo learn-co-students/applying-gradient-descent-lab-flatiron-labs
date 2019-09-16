@@ -3,7 +3,7 @@
 
 ### Introduction
 
-In this lab, let's put our knowledge about data science to the test. We will have access to functions in the [error](https://github.com/learn-co-curriculum/applying-gradient-descent-lab/blob/master/error.py), [graph](https://github.com/learn-co-curriculum/applying-gradient-descent-lab/blob/master/graph.py) and [linear equations](https://github.com/learn-co-curriculum/applying-gradient-descent-lab/blob/master/linear_equations.py) libraries that we previously wrote.
+In this lab, we'll put our knowledge about data science to the test. We will have access to functions in the [error](https://github.com/learn-co-curriculum/applying-gradient-descent-lab/blob/master/error.py), [graph](https://github.com/learn-co-curriculum/applying-gradient-descent-lab/blob/master/graph.py) and [linear equations](https://github.com/learn-co-curriculum/applying-gradient-descent-lab/blob/master/linear_equations.py) libraries that we previously wrote.
 
 This is our task: We are an employee for *Good Lion Studios*. For *Good Lion*, our job is first to gather, explore, and format our data so that we can build a regression line of this data. Then we will work through various attempts of building out these regression lines. By the end of this lab, we should have a working version that we can proudly show to our manager.
 
